@@ -10,4 +10,13 @@ function App() {
   );
 }
 
+let items = [products]
+let sorted = items.sort ((a,b) => a.expireydate -b.expireydate>
+<ul>  
+return sorted.map (item =>) {
+  return <ul className = 'listItem'> </ul>
+    <li> {ItemName} </li>
+    <button onClick={()=> deleteItem}>X</button>
+</ul>
+  }
 export default App;
