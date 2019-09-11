@@ -1,10 +1,6 @@
-// import React from 'react';
-// //import logo from './logo.svg';
-// =======
 import React, { useState } from 'react';
 import logo from './fridge-open.svg';
 import bin from './bin.svg';
-// >>>>>>> upstream/master
 import './App.css';
 import products from './ItemsList';
 
