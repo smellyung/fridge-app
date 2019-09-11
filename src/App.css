@@ -3,31 +3,40 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  height: 15vmin;
   pointer-events: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Bin-logo {
+  height: 6vmin;
+  margin-top: -1vmin;
+}
+
+.Form {
+  display: grid;
+  align-content: center;
+  padding: 4vmin;
+}
+
+#name, #expiry, #submit {
+  width: auto;
+  margin: 2vmin auto;
+  height: 5vmin;
+  text-align: center;
+}
+
+.ItemList {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.Button {
+  position: absolute;
+  right: 10px;
+  border: none;
+  background: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  font-family: Harriet;
+  color: rgb(13, 155, 173);
 }
