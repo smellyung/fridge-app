@@ -6,6 +6,7 @@ import products from './ItemsList';
 
 function App() {
   const [itemList, setItemList] = useState(products);
+  const today = new Date().toISOString().split('T')[0];
   function deleteDate(date) {
     setItemList(itemList.filter(item => item.date !== date));
   }
@@ -37,6 +38,7 @@ function App() {
         <input type='date'
           placeholder='Enter your items expiry date'
           id='expiry'
+          min={today}
           required />
         <input type='submit' value='Submit' id='submit' />
       </form>
