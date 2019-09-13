@@ -1,3 +1,3 @@
-export default function itemlist() {
+export default function ItemsList() {
   return [];
 }
