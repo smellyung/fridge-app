@@ -6,7 +6,8 @@ import products from './ItemsList';
 
 function App() {
   const [itemList, setItemList] = useState(products);
-  const today = new Date().toISOString().split('T')[0];
+  const todayMin = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().replace(/T.*/, '').split('-').reverse().join('/');
   function deleteDate(date) {
     setItemList(itemList.filter(item => item.date !== date));
   }
@@ -26,7 +27,7 @@ function App() {
   }
   return (
     <div className='App'>
-      <h1>Fridge App!!</h1>
+      <h1>Fridge-App</h1>
       <img src={logo} className='App-logo' alt='logo' />
       <form onSubmit={(e) => addItem(e)} className='Form'>
         <label>Item</ label>
@@ -38,15 +39,34 @@ function App() {
         <input type='date'
           placeholder='Enter your items expiry date'
           id='expiry'
-          min={today}
+          min={todayMin}
           required />
         <input type='submit' value='Submit' id='submit' />
       </form>
       <ul className='List'>{
         itemList.map(item => {
+          // const expiryDate = `${item.date.getFullYear()}-0${item.date.getMonth() + 1}-${item.date.getDate()}`;
+          const expiryDate = `${item.date.toISOString().replace(/T.*/, '').split('-').reverse().join('/')}`;
+          const todayColor = new Date().getTime();
+          const expiryDateColor = item.date.getTime();
+
+          console.log(today, 'today');
+          console.log(expiryDate, 'expiryDate');
+          function getColor() {
+            if (expiryDateColor - 2.592e+8 <= todayColor && expiryDateColor >= todayColor)
+              // If not expired apply AlmostExpired
+              return 'AlmostExpired';
+            else if (expiryDateColor < todayColor)
+              // If expires in 3 days apply ExpiredItem
+              return 'ExpiredItem';
+            else
+              // Else use ‘ItemList’ class
+              return 'ItemList';
+          };
+          console.log(expiryDateColor - 2.592e+8, 'test');
           return (
-            <div className='ItemList'>
-              <li key={item.name} id={item.name}> {item.name} {item.date.getDate()}/{item.date.getMonth() + 1}/{item.date.getFullYear()}</li>
+            <div className={getColor()} key={item.name}>
+              <li id={item.name}> {item.name} {expiryDate}</li>
               <button onClick={() => deleteDate(item.date)} className='Button'><img src={bin} className='Bin-logo' alt='bin logo' /></button>
             </div>
           );
@@ -58,4 +78,17 @@ function App() {
     </div>
   );
 }
+
 export default App;
+
+
+// function getColor() {
+//   return expiryDate2 <= today2  + 2.592e+8 && expiryDate2 >= today2 ? 'AlmostExpired' : expiryDate2 < today2 ? 'ExpiredItem' : 'ItemList'
+// };
+
+// return (
+//   <div className={getColor(expiryDate)}>
+//     <li key={item.name} id={item.name}> {item.name} {expiryDate}</li>
+//     <button onClick={() => deleteDate(item.date)} className='Button'><img src={bin} className='Bin-logo' alt='bin logo' /></button>
+//   </div>
+// );

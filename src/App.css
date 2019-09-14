@@ -27,6 +27,17 @@
 
 .ItemList {
   display: flex;
+  background-color: green;
+}
+
+.AlmostExpired {
+  display: flex;
+  background-color: orange;
+}
+
+.ExpiredItem {
+  display: flex;
+  background-color: red;
 }
 
 .Button {
