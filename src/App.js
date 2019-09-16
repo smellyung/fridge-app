@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import logo from './fridge-open.svg';
 import bin from './bin.svg';
 import './App.css';
-// import Logo from './Logo';
 
 function App() {
   const [itemList, setItemList] = useState([]);
-  const todayMin = new Date().toISOString().split('T')[0];
-  const today = new Date().toISOString().replace(/T.*/, '').split('-').reverse().join('/');
+  const today = new Date().toISOString().split('T')[0];
   function deleteDate(date) {
     setItemList(itemList.filter(item => item.date !== date));
   }
