@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import logo from './fridge-open.svg';
 import bin from './bin.svg';
 import './App.css';
+import products from './ItemsList';
 // import Logo from './Logo';
 
 function App() {
-  const [itemList, setItemList] = useState([]);
+  const [itemList, setItemList] = useState(products);
   const todayMin = new Date().toISOString().split('T')[0];
   const today = new Date().toISOString().replace(/T.*/, '').split('-').reverse().join('/');
   function deleteDate(date) {
@@ -45,7 +46,7 @@ function App() {
         <input type='submit' value='Submit' id='submit' />
       </form>
       <ul className='List'>{
-        itemList.map((item, index) => {
+        itemList.map(item => {
           // const expiryDate = `${item.date.getFullYear()}-0${item.date.getMonth() + 1}-${item.date.getDate()}`;
           const expiryDate = `${item.date.toISOString().replace(/T.*/, '').split('-').reverse().join('/')}`;
           const todayColor = new Date().getTime();
@@ -66,7 +67,7 @@ function App() {
           };
           console.log(expiryDateColor - days3InMillisecond, 'test');
           return (
-            <div className={getColor()} id='list' key={index}>
+            <div className={getColor()} id='list' key={item.name}>
               <li id={item.name}>
                 {item.name} {expiryDate}
                 <button onClick={() => deleteDate(item.date)} className='Button'>
