@@ -28,8 +28,7 @@ function Form() {
                     const todayColor = new Date().getTime();
                     const expiryDateColor = item.date.getTime();
                     const days2InMillisecond = 1.728e+8;
-                    console.log(today, 'today');
-                    console.log(expiryDate, 'expiryDate');
+                    
                     function getColor() {
                         return expiryDateColor - days2InMillisecond > todayColor ?
                             'ItemList' :
