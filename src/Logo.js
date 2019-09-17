@@ -1,32 +1,31 @@
 import React from 'react';
-import fridgeOpen from './fridge-open.svg';
-import fridgeClose from './fridge-close.svg';
-
-
+// import logo from './img/fridge-close.svg';
 
 const imagesPath = {
-    minus: { fridgeOpen },
-    plus: { fridgeClose }
+  o: require('./img/fridge-open.svg'),
+  c: require('./img/fridge-close.svg')
+}
+
+class Logo extends React.Component {
+  state = {
+    open: true
   }
-  
-  class Logo extends React.Component {
-    state = {
-      open: true
-    }
-    toggleImage = () => {
-      this.setState(state => ({ open: !state.open }))
-    }
-  
-    getImageName = () => this.state.open ? 'plus' : 'minus'
-  
-    render() {
-      const imageName = this.getImageName();
-      return (
-        <div id="root">
-          <img style={{maxWidth: '50px'}} src={imagesPath[imageName]} alt='Fridge' onClick={this.toggleImage} />
-        </div>
-      );
-    }
+  toggleImage = () => {
+    this.setState(state => ({ open: !state.open }))
   }
+
+  getImageName = () => this.state.open ? 'c' : 'o'
+
+  render() {
+    const imageName = this.getImageName();
+    return (
+      <>
+        <h1>Fridge-App</h1>
+        {/* <img src={logo} className='App-logo' alt='logo' /> */}
+        <img style={{ height: '15vmin' }} src={imagesPath[imageName]} alt='Fridge' onClick={this.toggleImage} />
+      </>
+    );
+  }
+}
 
 export default Logo;
