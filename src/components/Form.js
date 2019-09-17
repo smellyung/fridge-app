@@ -43,14 +43,13 @@ function Form() {
                     const todayColor = new Date().getTime();
                     const expiryDateColor = item.date.getTime();
                     const days2InMillisecond = 1.728e+8;
-                    console.log(today, 'today');
-                    console.log(expiryDate, 'expiryDate');
                     function getColor() {
                         return expiryDateColor - days2InMillisecond > todayColor ?
                             'ItemList' :
                             expiryDateColor > todayColor ?
-                                'AlmostExpired' :
-                                'ExpiredItem'
+                                `${'AlmostExpired'} ${alert(`${item.name} is about to expire`)}` :
+                                `${'ExpiredItem'} ${alert(`${item.name} expired`)}`
+                                
                     };
                     return (
                         <div className={getColor()} id='list' key={index}>
