@@ -1,9 +1,8 @@
 import React from 'react';
-// import logo from './img/fridge-close.svg';
 
 const imagesPath = {
-  o: require('./img/fridge-open.svg'),
-  c: require('./img/fridge-close.svg')
+  o: require('../img/fridge-open.svg'),
+  c: require('../img/fridge-close.svg')
 }
 
 class Logo extends React.Component {
@@ -21,7 +20,6 @@ class Logo extends React.Component {
     return (
       <>
         <h1>Fridge-App</h1>
-        {/* <img src={logo} className='App-logo' alt='logo' /> */}
         <img style={{ height: '15vmin' }} src={imagesPath[imageName]} alt='Fridge' onClick={this.toggleImage} />
       </>
     );

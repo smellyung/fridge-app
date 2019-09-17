@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-// import logo from './img/fridge-close.svg';
-// import List from './List';
-import bin from './img/bin.svg';
+import bin from '../img/bin.svg';
 
 function Form() {
     const [itemList, setItemList] = useState([]);

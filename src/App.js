@@ -1,7 +1,7 @@
 import React from 'react';
-import Logo from './Logo';
-import Form from './Form';
-import './App.css';
+import Logo from '../src/components/Logo';
+import Form from '../src/components/Form';
+import '../src/App.css';
 
 function App() {
   return (
