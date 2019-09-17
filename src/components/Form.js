@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import bin from '../img/bin.svg';
 import { addItem, deleteAll, deleteDate } from './formFunctions';
 
 function Form() {
     const [itemList, setItemList] = useState([]);
     const today = new Date().toISOString().split('T')[0];
+
+    useEffect(() => {
+        fetch('/rest/products')
+            .then(response => response.json())
+            .then(data => console.log(data));
+    })
 
     return (
         <>
