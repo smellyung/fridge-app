@@ -8,35 +8,102 @@
 }
 
 .Bin-logo {
-  height: 6vmin;
-  margin-top: -1vmin;
+  height: 1rem;
+  margin-top: 20%;
 }
 
 .Form {
   display: grid;
   align-content: center;
   padding: 4vmin;
+  width: 253px;
+  margin: auto;
+  border-radius: 5% / 5%;
+  background-color: rgb(250, 250, 226);
+}
+
+.RemoveAll {
+  margin: 2vmin auto;
+  background-color: rgb(212, 30, 30);
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+input[type=text], select {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type=submit] {
+  background-color: rgb(13, 155, 173);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  /* cursor: pointer; */
+}
+
+input[type=submit]:hover {
+  background-color: #32bea6;
 }
 
 #name, #expiry, #submit {
   width: auto;
   margin: 2vmin auto;
-  height: 5vmin;
   text-align: center;
+  font-size: initial;
+}
+
+#expiry {
+  padding: 2vmin;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.List {
+  list-style-type: none;
+  min-height: 300px;
+  width: 253px;
+  padding: 4vmin;
+  margin: auto;
+  border-radius: 5% / 5%;
+  background-color: rgb(250, 250, 226);
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  word-spacing: 1em;
+  font-size: initial;
+  text-transform: capitalize;
 }
 
 .ItemList {
   display: flex;
+  background-color: #77dd77;
+}
+
+.AlmostExpired {
+  display: flex;
+  background-color: #ffb347;
+}
+
+.ExpiredItem {
+  display: flex;
+  background-color: #ff6961;
 }
 
 .Button {
   position: absolute;
-  right: 10px;
   border: none;
-  background: white;
+  background: none;
 }
 
 h1 {
   font-family: Harriet;
   color: rgb(13, 155, 173);
+}
+
+label {
+  font-size: large;
 }
