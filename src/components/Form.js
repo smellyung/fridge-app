@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import bin from '../img/bin.svg';
-import { addItem, deleteAll, deleteDate } from './formFunctions';
+import { addItem, deleteAll, deleteDate, sortItems } from './formFunctions';
 
 function Form() {
     const [itemList, setItemList] = useState([]);
@@ -9,7 +9,11 @@ function Form() {
     useEffect(() => {
         fetch('/rest/products')
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then(dbItemList => {
+                if (dbItemList.length > 0) {
+                    sortItems(dbItemList, setItemList)
+                }
+            });
     })
 
     return (
@@ -30,24 +34,25 @@ function Form() {
             </form>
             <ul className='List'>{
                 itemList.map((item, index) => {
-                    const expiryDate = `${item.date.toISOString().replace(/T.*/, '').split('-').reverse().join('/')}`;
+                    const expiryDateStr = new Date(item.expiryDate);
+                    const date = `${expiryDateStr.toISOString().replace(/T.*/, '').split('-').reverse().join('/')}`;
                     const todayColor = new Date().getTime();
-                    const expiryDateColor = item.date.getTime();
+                    const expiryDateColor = expiryDateStr.getTime();
                     const days2InMillisecond = 1.728e+8;
                     
                     function getColor() {
                         return expiryDateColor - days2InMillisecond > todayColor ?
                             'ItemList' :
                             expiryDateColor > todayColor ?
-                                `${'AlmostExpired'} ${alert(`${item.name} is about to expire`)}` :
-                                `${'ExpiredItem'} ${alert(`${item.name} expired`)}`
+                                'AlmostExpired' :
+                                'ExpiredItem';
                                 
                     };
                     return (
                         <div className={getColor()} id='list' key={index}>
                             <li id={item.name}>
-                                {item.name} {expiryDate}
-                                <button onClick={() => deleteDate(item.date, itemList, setItemList)} className='Button'>
+                                {item.name} {date}
+                                <button onClick={() => deleteDate(item, itemList, setItemList)} className='Button'>
                                     <img src={bin} className='Bin-logo' alt='bin logo' />
                                 </button>
                             </li>

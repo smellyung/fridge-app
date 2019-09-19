@@ -1,19 +1,59 @@
-function deleteDate(date, itemList, setItemList) {
-    setItemList(itemList.filter(item => item.date !== date));
+function deleteDate(item, itemList, setItemList) {
+    const { name, expiryDate } = item;
+    //DELETE from db
+    fetch('/rest/products', {
+        method: 'delete',
+        body: JSON.stringify({ name, expiryDate }),
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        }
+    }).then((response) => response.json())
+    .then((dbItemList) => {
+        if (dbItemList.length > 0) {
+            //sort by expiry date rather than name
+            sortItems(dbItemList, setItemList);
+        }
+    })
+    
 }
 function deleteAll(setItemList) {
-    setItemList([]);
+    fetch('/rest/products/deleteAll', {
+        method: 'delete',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        }
+    }).then((response) => response.json())
+    .then((dbItemList) => {
+        setItemList(dbItemList)
+    })
 }
 function addItem(e, itemList, setItemList) {
     e.preventDefault();
     let name = e.target.children[1].value;
-    let date = new Date(e.target.children[3].value);
-    let toAdd = { name, date };
-    // sort by expiry date rather than name
+    let expiryDate = new Date(e.target.children[3].value);
 
-    let sorted = [...itemList, toAdd].sort((a, b) => a.date - b.date);
-    console.log(sorted, 'SORTED');
-    setItemList(sorted);
+    //POST product to db
+    fetch('/rest/products', {
+        method: 'post',
+        body: JSON.stringify({ name, expiryDate }),
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        }
+    })
+    .then((response) => response.json())
+    .then((dbItemList) => {
+        console.log(dbItemList, 'dbItemList')
+        if (dbItemList.length > 0) {
+            //sort by expiry date rather than name
+            sortItems(dbItemList, setItemList);
+        }
+    })
 }
 
-export { deleteDate, deleteAll, addItem };
+function sortItems(items, setItemList) {
+    let sorted = items.sort((a, b) => new Date(a.expiryDate) - new Date(b.expiryDate));
+    setItemList(sorted);
+    
+}
+
+export { deleteDate, deleteAll, addItem, sortItems };
