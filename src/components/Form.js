@@ -52,7 +52,7 @@ function Form() {
                         <div className={getColor()} id='list' key={index}>
                             <li id={item.name}>
                                 {item.name} {date}
-                                <button onClick={() => deleteDate(item, itemList, setItemList)} className='Button'>
+                                <button onClick={() => deleteDate(item, setItemList)} className='Button'>
                                     <img src={bin} className='Bin-logo' alt='bin logo' />
                                 </button>
                             </li>

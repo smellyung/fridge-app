@@ -1,4 +1,4 @@
-function deleteDate(item, itemList, setItemList) {
+function deleteDate(item, setItemList) {
     const { name, expiryDate } = item;
     //DELETE from db
     fetch('/rest/products', {
@@ -10,7 +10,6 @@ function deleteDate(item, itemList, setItemList) {
     }).then((response) => response.json())
     .then((dbItemList) => {
         if (dbItemList.length > 0) {
-            //sort by expiry date rather than name
             sortItems(dbItemList, setItemList);
         }
     })
@@ -44,7 +43,6 @@ function addItem(e, itemList, setItemList) {
     .then((dbItemList) => {
         console.log(dbItemList, 'dbItemList')
         if (dbItemList.length > 0) {
-            //sort by expiry date rather than name
             sortItems(dbItemList, setItemList);
         }
     })
@@ -53,7 +51,6 @@ function addItem(e, itemList, setItemList) {
 function sortItems(items, setItemList) {
     let sorted = items.sort((a, b) => new Date(a.expiryDate) - new Date(b.expiryDate));
     setItemList(sorted);
-    
 }
 
 export { deleteDate, deleteAll, addItem, sortItems };
