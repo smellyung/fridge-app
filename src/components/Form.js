@@ -13,8 +13,9 @@ function Form() {
                 if (dbItemList.length > 0) {
                     sortItems(dbItemList, setItemList)
                 }
-            });
-    })
+            })
+            .catch(() => console.log('Something went wrong'))
+    }, [])
 
     return (
         <>
