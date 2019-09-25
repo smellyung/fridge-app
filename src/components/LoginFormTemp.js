@@ -5,6 +5,7 @@ const responseGoogle = (response) => {
 }
 
 export default function Login() {
+   //const [isLoggedIn, setIsLoggedIn] = useState()
     return (
         <div className='loginForm'>
             <input className='firstName' />
@@ -17,12 +18,18 @@ export default function Login() {
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}
                 />
-                  <GoogleLogout
+                  {/* <GoogleLogout
                     buttonText="Logout"
                     onSuccess={responseGoogle}
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}
-                />
+                /> */}
+                <GoogleLogout
+                    clientId="686578234039-g8l4uljoh00uf88e87kviq9qigrltoit.apps.googleusercontent.com"
+                    buttonText="Logout"
+                    onLogoutSuccess={logout}
+                >
+                </GoogleLogout>
             </div>
         </div>
     );
