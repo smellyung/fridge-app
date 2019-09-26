@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
 
 const port = process.env.PORT || 3001;
 const db = require('./db');
@@ -31,6 +32,19 @@ db.connect().then(dbo => {
             })
         })
     });
+    app.post('/rest/login', jsonParser, (req,res) => {
+        const id_token = req.headers['authorization'].replace('Bearer ', '');
+        console.log("id_token is: ", id_token);
+        fetch(`https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=${id_token}`).then(res => {
+            return res.ok ? res.json() : Promise.reject();
+        }).then(decodedToken => {
+            console.log('Our decoded token is: ', decodedToken);
+            res.end(JSON.stringify({
+                result: 'Hi',
+                decodedToken
+            }));
+        })
+    })
     // delete product in db
     app.delete('/rest/products', (req, res) => {
         const product = req.body;
