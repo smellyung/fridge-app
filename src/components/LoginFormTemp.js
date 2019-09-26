@@ -8,7 +8,7 @@ export default function Login() {
         fetch('/rest/login', {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + response.tokenId
+                'Authorization': 'Bearer ' + res.tokenId
             },
         }).then(res => res.ok ? res.json() : Promise.reject())
         .then(res => {
