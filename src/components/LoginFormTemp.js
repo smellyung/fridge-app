@@ -1,15 +1,13 @@
 import React from 'react';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import GoogleLogin from 'react-google-login';
 const responseGoogle = (response) => {
-    console.log(response);
+    console.log("Google's response is: ", response);
 }
 
 export default function Login() {
-   //const [isLoggedIn, setIsLoggedIn] = useState()
     return (
         <div className='loginForm'>
-            <input className='firstName' />
-            <input className='lastName' />
+            <h1>Please Login with Google</h1>
             <div id='googleButton'>
                 <GoogleLogin
                     clientId="686578234039-g8l4uljoh00uf88e87kviq9qigrltoit.apps.googleusercontent.com"
@@ -24,12 +22,12 @@ export default function Login() {
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}
                 /> */}
-                <GoogleLogout
+                {/* <GoogleLogout
                     clientId="686578234039-g8l4uljoh00uf88e87kviq9qigrltoit.apps.googleusercontent.com"
                     buttonText="Logout"
                     onLogoutSuccess={logout}
                 >
-                </GoogleLogout>
+                </GoogleLogout> */}
             </div>
         </div>
     );

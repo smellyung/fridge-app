@@ -19,7 +19,7 @@ class Logo extends React.Component {
     const imageName = this.getImageName();
     return (
       <>
-        <h1>Fridge-App</h1>
+        <h1>Fridge</h1>
         <img style={{ height: '15vmin' }} src={imagesPath[imageName]} alt='Fridge' onClick={this.toggleImage} />
       </>
     );

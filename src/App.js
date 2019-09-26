@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Logo from '../src/components/Logo';
 import Form from '../src/components/Form';
 import Login from '../src/components/LoginFormTemp';
 import '../src/App.css';
 
 function App() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  // const [isSignedIn, setIsSignedIn] = useState(false);
   // useEffect(() => {
   //   window.gapi.signin2.render('g-signin2', {
   //     'scope': 'https://www.googleapis.com/auth/plus.login',
